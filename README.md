@@ -205,7 +205,7 @@ sudo umount /mnt/rhel-nfs
 
 Sau khi hoàn tất, kết quả LVM và filesystem trông như sau:
 
-![LVM Result](images/rootfsLVS.png)
+![LVM Result](images/lvs.png)
 
 ---
 
