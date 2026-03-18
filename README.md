@@ -44,6 +44,8 @@ df -h && hostnamectl
 lsblk -f
 ```
 
+![hostnamectl](images/hostnamectl.png)
+
 ---
 
 ## 2. Mở rộng dung lượng ổ cứng ảo
@@ -96,6 +98,18 @@ free -h
 vgs
 lvs
 ```
+
+**Volume Group sau khi mở rộng:**
+
+![vgs result](images/vgs.png)
+
+**xfs_growfs xác nhận filesystem đã được mở rộng:**
+
+![xfs_growfs](images/xfs-growfs.png)
+
+**Logical Volumes sau khi resize:**
+
+![lvs result](images/lvs.png)
 
 ---
 
@@ -175,6 +189,18 @@ sudo exportfs -v
 sudo ss -tuln | grep -E '2049|111'
 ```
 
+**Cấu hình `/etc/exports` và kết quả `exportfs`:**
+
+![NFS exports config](images/nfs-exports-config.png)
+
+**NFS Server đang hoạt động:**
+
+![NFS server status](images/nfs-server-status.png)
+
+**Port 2049 (NFS) và 111 (RPC) đang lắng nghe:**
+
+![NFS ports](images/nfs-ports.png)
+
 ---
 
 ## 9. Test NFS từ Host tới VM
@@ -199,13 +225,20 @@ sudo umount /mnt/rhel-nfs
 
 > Thay `192.168.1.4` bằng IP thực của VM RHEL (lấy từ bước 7).
 
+![NFS mount test from Ubuntu host](images/nfs-mount-test.png)
+
 ---
 
-## 10. Kết quả
+## 10. Kết quả tổng hợp
 
-Sau khi hoàn tất, kết quả LVM và filesystem trông như sau:
+Toàn bộ kết quả đã được minh họa inline trong từng bước tương ứng ở trên.
 
-![LVM Result](images/lvs.png)
+| Bước | Ảnh kết quả |
+|---|---|
+| Bước 1 – Kiểm tra hệ thống | `hostnamectl.png` |
+| Bước 3 – Expand LVM | `vgs.png`, `xfs-growfs.png`, `lvs.png` |
+| Bước 8 – NFS Server | `nfs-exports-config.png`, `nfs-server-status.png`, `nfs-ports.png` |
+| Bước 9 – Test NFS | `nfs-mount-test.png` |
 
 ---
 
